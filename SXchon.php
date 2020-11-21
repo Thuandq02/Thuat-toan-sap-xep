@@ -1,30 +1,20 @@
 <?php
-
-function selection_sort($data)
-{
-    for ($i = 0; $i < count($data) - 1; $i++) {
+function seclectionSort($arr){
+    for($i=0;$i< count($arr); $i++){
         $min = $i;
-        for ($j = $i + 1; $j < count($data); $j++) {
-            if ($data[$j] < $data[$min]) {
+        for($j=$i+1;$j<count($arr);$j++){
+            if($arr[$j] < $arr[$min]){
                 $min = $j;
             }
         }
-        $data = swap_positions($data, $i, $min);
+        if($min != $i){
+            $temp = $arr[$i];
+            $arr[$i] = $arr[$min];
+            $arr[$min]= $temp;
+        }
     }
-    return $data;
+    return $arr;
 }
-
-function swap_positions($data1, $left, $right)
-{
-    $backup_old_data_right_value = $data1[$right];
-    $data1[$right] = $data1[$left];
-    $data1[$left] = $backup_old_data_right_value;
-    return $data1;
-}
-
-$my_array = array(1, 9, 4.5, 6.6, 5.7, -4.5);
-echo "Original Array :\n";
-echo implode(', ', $my_array);
-echo "\nSorted Array :\n";
-echo implode(', ', selection_sort($my_array)) . PHP_EOL;
-?>
+$arr =  array(1, 9, 4.5, 6.6, 5.7, -4.5);
+echo "<pre>";
+print_r(seclectionSort($arr));
